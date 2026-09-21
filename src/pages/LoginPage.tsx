@@ -1,8 +1,24 @@
 import { Box, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../config/firebase";
 import LoginForm from "../components/LoginForm";
 import HeroSection from "../components/HeroSection";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const accessToken = await result.user.getIdToken();
+      navigate("/dashboard", { state: { accessToken } });
+    } catch (error) {
+      console.error("Google login failed:", error);
+      alert(`Google login failed: ${(error as Error).message}`);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -27,7 +43,7 @@ export default function LoginPage() {
         <Grid container spacing={{ xs: 2, md: 4 }} sx={{ alignItems: "center" }}>
           {/* Left - Login Form */}
           <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex", justifyContent: "center" }}>
-            <LoginForm onGoogleLogin={() => {}} />
+            <LoginForm onGoogleLogin={handleGoogleLogin} />
           </Grid>
 
           {/* Right - Hero Card - hidden on mobile, side-by-side on desktop */}
