@@ -1,75 +1,41 @@
-# React + TypeScript + Vite
+# Tuga Login App — Software Engineering Intern Assessment (Full Stack)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Assessment for code3x — Software Engineering Intern (Full Stack). Implements the login page from the provided Figma reference with a focus on layout accuracy and responsiveness.
 
-Currently, two official plugins are available:
+## Live Demo & Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Live URL:** https://tuga-login-app-70d37.web.app
+- **GitHub Repo:** https://github.com/DulmiKalupahana/tuga-login-app
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- TypeScript
+- Material UI (MUI) — components and styling via `sx`
+- Firebase Authentication (Google) & Firebase Hosting
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Pixel-detailed UI based on the Figma reference — split-screen layout, Poppins typography, rounded inputs and black action buttons.
+- Mobile responsive layout with MUI Grid and breakpoints — hero panel hidden on mobile, side-by-side on desktop.
+- Client-side input validation — required fields, email format check, password length, inline errors with `helperText` and dynamic clear on typing.
+- Firebase Google Authentication — `signInWithPopup` with `GoogleAuthProvider` and `getAuth`.
+- Post-login token page (`/dashboard`) — displays the user's `accessToken` (via `getIdToken`) with one-click copy and back-to-login navigation.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Local Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/DulmiKalupahana/tuga-login-app.git
+cd tuga-login-app
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Build for production:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build
 ```
+
+Requires a Firebase config in `src/config/firebase.ts` for Google login to work locally.
