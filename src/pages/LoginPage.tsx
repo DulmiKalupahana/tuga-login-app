@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import LoginForm from "../components/LoginForm";
+import HeroSection from "../components/HeroSection";
 
 export default function LoginPage() {
   return (
@@ -16,16 +17,27 @@ export default function LoginPage() {
       <Box
         sx={{
           width: "100%",
-          maxWidth: 480,
+          maxWidth: 1100,
           bgcolor: "#fff",
           borderRadius: { xs: 0, md: "16px" },
           boxShadow: { xs: "none", md: "0 8px 32px rgba(0,0,0,0.06)" },
-          p: { xs: 2, sm: 4, md: 5 },
-          display: "flex",
-          justifyContent: "center",
+          p: { xs: 2, sm: 3, md: 4 },
         }}
       >
-        <LoginForm onGoogleLogin={() => {}} />
+        <Grid container spacing={{ xs: 2, md: 4 }} sx={{ alignItems: "center" }}>
+          {/* Left - Login Form */}
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex", justifyContent: "center" }}>
+            <LoginForm onGoogleLogin={() => {}} />
+          </Grid>
+
+          {/* Right - Hero Card - hidden on mobile, side-by-side on desktop */}
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            sx={{ display: { xs: "none", md: "block" } }}
+          >
+            <HeroSection />
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

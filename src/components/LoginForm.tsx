@@ -27,6 +27,40 @@ export default function LoginForm({
   onFacebookLogin,
 }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const validate = (): boolean => {
+    let valid = true;
+
+    if (!username.trim()) {
+      setUsernameError("Username or Email is required");
+      valid = false;
+    } else if (username.includes("@") && !/\S+@\S+\.\S+/.test(username)) {
+      setUsernameError("Please enter a valid email address");
+      valid = false;
+    } else {
+      setUsernameError("");
+    }
+
+    if (!password) {
+      setPasswordError("Password is required");
+      valid = false;
+    } else if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    return valid;
+  };
+
+  const handleLogin = () => {
+    validate();
+  };
 
   return (
     <Box
@@ -42,9 +76,11 @@ export default function LoginForm({
       {/* Heading */}
       <Typography
         sx={{
-          fontWeight: 800,
+          fontFamily: "'Poppins', sans-serif",
+          fontWeight: 700,
           fontSize: "28px",
           lineHeight: 1.2,
+          letterSpacing: "-0.02em",
           textAlign: "center",
           color: "#000",
           mb: 1.2,
@@ -56,16 +92,26 @@ export default function LoginForm({
       {/* Subtitle */}
       <Typography
         sx={{
+          fontFamily: "'Poppins', sans-serif",
           textAlign: "center",
           color: "#6B7280",
           fontSize: "11px",
           lineHeight: 1.6,
+          letterSpacing: "0.01em",
           maxWidth: 300,
           mb: 3.5,
         }}
       >
         Simplify your workflow and boost your productivity with{" "}
-        <Box component="span" sx={{ fontWeight: 700, color: "#000" }}>
+        <Box
+          component="span"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 700,
+            color: "#000",
+            letterSpacing: "-0.01em",
+          }}
+        >
           Tuga&apos;s App
         </Box>
         . Get started for free.
@@ -76,16 +122,50 @@ export default function LoginForm({
         fullWidth
         placeholder="Username"
         size="small"
+        value={username}
+        autoComplete="off"
+        onChange={(e) => {
+          setUsername(e.target.value);
+          if (usernameError) setUsernameError("");
+        }}
+        error={!!usernameError}
+        helperText={usernameError}
         sx={{
-          mb: 1.5,
+          mb: usernameError ? 0.5 : 1.5,
           "& .MuiOutlinedInput-root": {
-            borderRadius: "24px",
+            borderRadius: "25px",
             bgcolor: "#fff",
+            fontFamily: "'Poppins', sans-serif",
             "& fieldset": { borderColor: "#D1D5DB" },
           },
           "& .MuiOutlinedInput-input": {
             py: 1.4,
             fontSize: "13px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.01em",
+            bgcolor: "#fff",
+            "&::placeholder": {
+              fontFamily: "'Poppins', sans-serif",
+              opacity: 0.6,
+            },
+          },
+          "& input:-webkit-autofill": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+            WebkitTextFillColor: "#000 !important",
+            caretColor: "#000",
+            transition: "background-color 5000s ease-in-out 0s",
+          },
+          "& input:-webkit-autofill:hover": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+          },
+          "& input:-webkit-autofill:focus": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+          },
+          "& .MuiFormHelperText-root": {
+            ml: 1.5,
+            fontSize: "11px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.01em",
           },
         }}
       />
@@ -96,16 +176,50 @@ export default function LoginForm({
         placeholder="Password"
         size="small"
         type={showPassword ? "text" : "password"}
+        value={password}
+        autoComplete="new-password"
+        onChange={(e) => {
+          setPassword(e.target.value);
+          if (passwordError) setPasswordError("");
+        }}
+        error={!!passwordError}
+        helperText={passwordError}
         sx={{
-          mb: 1,
+          mb: passwordError ? 0 : 1,
           "& .MuiOutlinedInput-root": {
-            borderRadius: "24px",
+            borderRadius: "25px",
             bgcolor: "#fff",
+            fontFamily: "'Poppins', sans-serif",
             "& fieldset": { borderColor: "#D1D5DB" },
           },
           "& .MuiOutlinedInput-input": {
             py: 1.4,
             fontSize: "13px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.01em",
+            bgcolor: "#fff",
+            "&::placeholder": {
+              fontFamily: "'Poppins', sans-serif",
+              opacity: 0.6,
+            },
+          },
+          "& input:-webkit-autofill": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+            WebkitTextFillColor: "#000 !important",
+            caretColor: "#000",
+            transition: "background-color 5000s ease-in-out 0s",
+          },
+          "& input:-webkit-autofill:hover": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+          },
+          "& input:-webkit-autofill:focus": {
+            WebkitBoxShadow: "0 0 0 1000px #fff inset !important",
+          },
+          "& .MuiFormHelperText-root": {
+            ml: 1.5,
+            fontSize: "11px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.01em",
           },
         }}
         slotProps={{
@@ -143,8 +257,10 @@ export default function LoginForm({
           href="#"
           underline="none"
           sx={{
+            fontFamily: "'Poppins', sans-serif",
             fontSize: "11px",
             fontWeight: 500,
+            letterSpacing: "0.01em",
             color: "#000",
           }}
         >
@@ -157,13 +273,16 @@ export default function LoginForm({
         fullWidth
         variant="contained"
         disableElevation
+        onClick={handleLogin}
         sx={{
           bgcolor: "#000",
           color: "#fff",
-          borderRadius: "24px",
+          borderRadius: "25px",
           textTransform: "none",
           fontWeight: 600,
           fontSize: "13px",
+          fontFamily: "'Poppins', sans-serif",
+          letterSpacing: "0.02em",
           py: 1.25,
           mb: 2.5,
           "&:hover": { bgcolor: "#1a1a1a" },
@@ -187,6 +306,8 @@ export default function LoginForm({
             px: 1.5,
             color: "#6B7280",
             fontSize: "11px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.02em",
             whiteSpace: "nowrap",
           }}
         >
@@ -247,12 +368,26 @@ export default function LoginForm({
       </Box>
 
       {/* Footer */}
-      <Typography sx={{ fontSize: "11px", color: "#000", textAlign: "center" }}>
+      <Typography
+        sx={{
+          fontFamily: "'Poppins', sans-serif",
+          fontSize: "11px",
+          letterSpacing: "0.01em",
+          color: "#000",
+          textAlign: "center",
+        }}
+      >
         Not a member?{" "}
         <Link
           href="#"
           underline="none"
-          sx={{ color: "#7AA07A", fontWeight: 600, fontSize: "11px" }}
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            color: "#7AA07A",
+            fontWeight: 600,
+            fontSize: "11px",
+            letterSpacing: "0.01em",
+          }}
         >
           Register now
         </Link>
