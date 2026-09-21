@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCnRU7WQ9oCX73_cS_Z2wWqOBHPd7dK-FY",
   authDomain: "tuga-login-app-70d37.firebaseapp.com",

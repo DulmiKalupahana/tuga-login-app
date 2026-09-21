@@ -73,7 +73,6 @@ export default function LoginForm({
         alignItems: "center",
       }}
     >
-      {/* Heading */}
       <Typography
         sx={{
           fontFamily: "'Poppins', sans-serif",
@@ -89,7 +88,6 @@ export default function LoginForm({
         Welcome back!
       </Typography>
 
-      {/* Subtitle */}
       <Typography
         sx={{
           fontFamily: "'Poppins', sans-serif",
@@ -117,7 +115,6 @@ export default function LoginForm({
         . Get started for free.
       </Typography>
 
-      {/* Username / Email */}
       <TextField
         fullWidth
         placeholder="Username"
@@ -170,7 +167,6 @@ export default function LoginForm({
         }}
       />
 
-      {/* Password with visibility toggle */}
       <TextField
         fullWidth
         placeholder="Password"
@@ -244,7 +240,6 @@ export default function LoginForm({
         }}
       />
 
-      {/* Forgot Password */}
       <Box
         sx={{
           width: "100%",
@@ -268,7 +263,6 @@ export default function LoginForm({
         </Link>
       </Box>
 
-      {/* Login Button */}
       <Button
         fullWidth
         variant="contained"
@@ -291,7 +285,6 @@ export default function LoginForm({
         Login
       </Button>
 
-      {/* Divider — or continue with */}
       <Box
         sx={{
           width: "100%",
@@ -316,7 +309,6 @@ export default function LoginForm({
         <Divider sx={{ flex: 1 }} />
       </Box>
 
-      {/* Social login icons */}
       <Box sx={{ display: "flex", gap: 1.5, mb: 4 }}>
         <IconButton
           onClick={onGoogleLogin}
@@ -367,7 +359,6 @@ export default function LoginForm({
         </IconButton>
       </Box>
 
-      {/* Footer */}
       <Typography
         sx={{
           fontFamily: "'Poppins', sans-serif",

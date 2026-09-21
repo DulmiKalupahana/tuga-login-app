@@ -41,12 +41,10 @@ export default function LoginPage() {
         }}
       >
         <Grid container spacing={{ xs: 2, md: 4 }} sx={{ alignItems: "center" }}>
-          {/* Left - Login Form */}
           <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex", justifyContent: "center" }}>
             <LoginForm onGoogleLogin={handleGoogleLogin} />
           </Grid>
 
-          {/* Right - Hero Card - hidden on mobile, side-by-side on desktop */}
           <Grid
             size={{ xs: 12, md: 6 }}
             sx={{ display: { xs: "none", md: "block" } }}
