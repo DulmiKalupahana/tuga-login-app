@@ -17,7 +17,6 @@ export default function HeroSection() {
         position: "relative",
       }}
     >
-      {/* Illustration area with floating elements */}
       <Box
         sx={{
           position: "relative",
@@ -30,7 +29,6 @@ export default function HeroSection() {
           mb: 2,
         }}
       >
-        {/* Decorative cloud outline (light green) */}
         <Box
           sx={{
             position: "absolute",
@@ -68,7 +66,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Main illustration - yoga/productivity pose */}
         <Box
           component="img"
           src={illustration}
@@ -84,7 +81,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Floating Canva Design card */}
         <Box
           sx={{
             position: "absolute",
@@ -125,7 +121,6 @@ export default function HeroSection() {
               </Typography>
             </Box>
 
-            {/* 84% circular progress */}
             <Box sx={{ position: "relative", display: "inline-flex" }}>
               <CircularProgress
                 variant="determinate"
@@ -189,13 +184,11 @@ export default function HeroSection() {
         </Box>
       </Box>
 
-      {/* Pagination dash - black dash style */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, mb: 2 }}>
         <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: "#D9D9D9" }} />
         <Box sx={{ width: 22, height: 6, borderRadius: 999, bgcolor: "#000" }} />
       </Box>
 
-      {/* Bottom text */}
       <Typography
         sx={{
           fontFamily: "'Poppins', sans-serif",
