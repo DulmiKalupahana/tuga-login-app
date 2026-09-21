@@ -7,11 +7,25 @@ import {
   Link,
   InputAdornment,
   IconButton,
+  Divider,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
-export default function LoginForm() {
+type LoginFormProps = {
+  onGoogleLogin: () => void;
+  onAppleLogin?: () => void;
+  onFacebookLogin?: () => void;
+};
+
+export default function LoginForm({
+  onGoogleLogin,
+  onAppleLogin,
+  onFacebookLogin,
+}: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -151,12 +165,86 @@ export default function LoginForm() {
           fontWeight: 600,
           fontSize: "13px",
           py: 1.25,
-          mb: 4,
+          mb: 2.5,
           "&:hover": { bgcolor: "#1a1a1a" },
         }}
       >
         Login
       </Button>
+
+      {/* Divider — or continue with */}
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          mb: 2.5,
+        }}
+      >
+        <Divider sx={{ flex: 1 }} />
+        <Typography
+          sx={{
+            px: 1.5,
+            color: "#6B7280",
+            fontSize: "11px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          or continue with
+        </Typography>
+        <Divider sx={{ flex: 1 }} />
+      </Box>
+
+      {/* Social login icons */}
+      <Box sx={{ display: "flex", gap: 1.5, mb: 4 }}>
+        <IconButton
+          onClick={onGoogleLogin}
+          aria-label="Continue with Google"
+          sx={{
+            bgcolor: "#000",
+            color: "#fff",
+            width: 42,
+            height: 42,
+            "&:hover": { bgcolor: "#1a1a1a" },
+          }}
+        >
+          <GoogleIcon sx={{ fontSize: 18 }} />
+        </IconButton>
+        <IconButton
+          aria-label="Continue with Apple"
+          onClick={() =>
+            onAppleLogin
+              ? onAppleLogin()
+              : alert("Apple Login is not configured for this assessment.")
+          }
+          sx={{
+            bgcolor: "#000",
+            color: "#fff",
+            width: 42,
+            height: 42,
+            "&:hover": { bgcolor: "#1a1a1a" },
+          }}
+        >
+          <AppleIcon sx={{ fontSize: 20 }} />
+        </IconButton>
+        <IconButton
+          aria-label="Continue with Facebook"
+          onClick={() =>
+            onFacebookLogin
+              ? onFacebookLogin()
+              : alert("Facebook Login is not configured for this assessment.")
+          }
+          sx={{
+            bgcolor: "#000",
+            color: "#fff",
+            width: 42,
+            height: 42,
+            "&:hover": { bgcolor: "#1a1a1a" },
+          }}
+        >
+          <FacebookIcon sx={{ fontSize: 18 }} />
+        </IconButton>
+      </Box>
 
       {/* Footer */}
       <Typography sx={{ fontSize: "11px", color: "#000", textAlign: "center" }}>

@@ -25,7 +25,7 @@ export default function LoginPage() {
           justifyContent: "center",
         }}
       >
-        <LoginForm />
+        <LoginForm onGoogleLogin={() => {}} />
       </Box>
     </Box>
   );
